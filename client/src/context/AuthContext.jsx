@@ -2,7 +2,7 @@ import { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 
 const AuthContext = createContext(null);
-const API_URL = 'http://localhost:5000';
+const API_URL = 'https://trace-dreamily-zap.ngrok-free.dev';
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);

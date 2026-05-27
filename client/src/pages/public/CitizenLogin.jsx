@@ -18,7 +18,7 @@ export default function CitizenLogin() {
     if (!form.email || !form.password) return toast.error('Please fill all fields');
     setLoading(true);
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/citizen/login', form, { withCredentials: true });
+      const res = await axios.post('https://trace-dreamily-zap.ngrok-free.dev/api/auth/citizen/login', form, { withCredentials: true });
       if (res.data.success) {
         login(res.data.accessToken, res.data.user);
         toast.success('Login successful!');

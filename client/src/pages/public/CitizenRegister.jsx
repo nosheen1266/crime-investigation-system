@@ -18,7 +18,7 @@ export default function CitizenRegister() {
     if (form.password.length < 6) return toast.error('Password must be at least 6 characters');
     setLoading(true);
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/citizen/register', form);
+      const res = await axios.post('https://trace-dreamily-zap.ngrok-free.dev/api/auth/citizen/register', form);
       if (res.data.success) {
         toast.success('Account created! Please login.');
         navigate('/citizen/login');
