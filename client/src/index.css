@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --color-primary: #00b4ff;
+  --color-secondary: #0066ff;
+  --color-success: #00ff88;
+  --color-warning: #ffaa00;
+  --color-danger: #ff3366;
+  --color-text-primary: #e0e8ff;
+  --color-text-secondary: #8892b0;
+  --color-bg-primary: #0a0d1a;
+  --color-bg-card: rgba(14,19,40,0.8);
+  --color-border: rgba(0,180,255,0.15);
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #0a0d1a;
+  color: #e0e8ff;
+  min-height: 100vh;
+}
+
+.glass-card {
+  background: rgba(14,19,40,0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(0,180,255,0.15);
+  border-radius: 12px;
+}
+
+.btn-neon {
+  background: transparent;
+  border: 1px solid #00b4ff;
+  color: #00b4ff;
+  padding: 10px 24px;
+  border-radius: 6px;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.btn-neon:hover {
+  background: #00b4ff;
+  color: #0a0d1a;
+  box-shadow: 0 0 20px rgba(0,180,255,0.4);
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0a0d1a; }
+::-webkit-scrollbar-thumb { background: rgba(0,180,255,0.3); border-radius: 3px; }
