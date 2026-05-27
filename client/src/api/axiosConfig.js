@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000';
+const API_URL = 'https://trace-dreamily-zap.ngrok-free.dev';
 
 const axiosInstance = axios.create({
   baseURL: API_URL,
