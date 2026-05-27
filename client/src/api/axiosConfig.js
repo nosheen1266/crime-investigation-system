@@ -2,9 +2,10 @@ import axios from 'axios';
 
 const API_URL = 'https://trace-dreamily-zap.ngrok-free.dev';
 
-const axiosInstance = axios.create({
-  baseURL: API_URL,
-  withCredentials: true,
+axiosInstance.interceptors.request.use((config) => {
+  if (accessToken) config.headers.Authorization = `Bearer ${accessToken}`;
+  config.headers['ngrok-skip-browser-warning'] = 'true';
+  return config;
 });
 
 let accessToken = null;
