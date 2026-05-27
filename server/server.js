@@ -5,6 +5,9 @@ const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 const path = require('path');
 
+// 1. IMPORT YOUR DATABASE HERE SO IT RUNS AND STAYS ALIVE
+const { poolPromise } = require('./config/db'); 
+
 const app = express();
 
 app.set('trust proxy', 1);
@@ -33,4 +36,10 @@ app.use((err, req, res, next) => {
 });
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+
+// 2. WAIT FOR DATABASE POOL, THEN LISTEN ON PORT
+poolPromise.then(() => {
+  app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+}).catch(err => {
+  console.error("❌ Failed to start server due to database error:", err);
+});
