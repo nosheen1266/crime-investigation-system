@@ -9,13 +9,18 @@ const { poolPromise } = require('./config/db');
 const app = express();
 app.set('trust proxy', 1);
 
-app.use(helmet());
+app.use(helmet({
+  crossOriginResourcePolicy: false,
+  crossOriginOpenerPolicy: false,
+}));
+
 app.use(cors({
   origin: true,
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'ngrok-skip-browser-warning'],
 }));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -40,7 +45,6 @@ poolPromise.then(() => {
     console.log('✅ Server is staying alive...');
   });
 
-  // Force Node.js to stay alive forever
   setInterval(() => {}, 1000 * 60 * 60);
 
 }).catch(err => {
