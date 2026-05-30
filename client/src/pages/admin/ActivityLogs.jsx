@@ -5,6 +5,19 @@ import axiosInstance from '../../api/axiosConfig';
 import { LogOut, Users, FileText, BarChart3, Activity, User } from 'lucide-react';
 import toast from 'react-hot-toast';
 
+const formatDateTime = (dateStr) => {
+  if (!dateStr) return 'N/A';
+  try {
+    // Remove any existing Z or timezone info, then add Z to treat as UTC
+    const clean = dateStr.toString().replace('Z', '').replace(/\+.*$/, '');
+    const date = new Date(clean + 'Z');
+    if (isNaN(date.getTime())) return 'N/A';
+    return date.toLocaleString('en-PK', { timeZone: 'Asia/Karachi' });
+  } catch {
+    return 'N/A';
+  }
+};
+
 export default function ActivityLogs() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
@@ -25,7 +38,10 @@ export default function ActivityLogs() {
   return (
     <div className="min-h-screen bg-navy-900 flex">
       <div className="w-64 bg-navy-800 border-r border-gray-800 flex flex-col">
-        <div className="p-6 border-b border-gray-800"><div className="text-red-400 font-bold text-lg">CICMS ADMIN</div><div className="text-gray-400 text-xs mt-1">Admin Portal</div></div>
+        <div className="p-6 border-b border-gray-800">
+          <div className="text-red-400 font-bold text-lg">CICMS ADMIN</div>
+          <div className="text-gray-400 text-xs mt-1">Admin Portal</div>
+        </div>
         <nav className="flex-1 p-4 space-y-2">
           {[
             { label: 'Dashboard', path: '/admin/dashboard', icon: <BarChart3 size={16} /> },
@@ -81,7 +97,7 @@ export default function ActivityLogs() {
                     <td className="p-4 text-white text-sm">{l.action}</td>
                     <td className="p-4 text-gray-400 text-sm max-w-xs truncate">{l.details}</td>
                     <td className="p-4 text-gray-400 text-sm">{l.ip_address || '-'}</td>
-                    <td className="p-4 text-gray-400 text-sm">{new Date(l.created_at + 'Z').toLocaleString('en-PK', { timeZone: 'Asia/Karachi' })}</td>
+                    <td className="p-4 text-gray-400 text-sm">{formatDateTime(l.created_at)}</td>
                   </tr>
                 ))}
             </tbody>

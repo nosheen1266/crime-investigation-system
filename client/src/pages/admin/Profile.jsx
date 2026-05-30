@@ -7,12 +7,26 @@ import toast from 'react-hot-toast';
 
 const formatDate = (dateStr) => {
   if (!dateStr) return 'N/A';
-  return new Date(dateStr + 'Z').toLocaleDateString('en-PK', { timeZone: 'Asia/Karachi' });
+  try {
+    const clean = dateStr.toString().replace('Z', '').replace(/\+.*$/, '');
+    const date = new Date(clean + 'Z');
+    if (isNaN(date.getTime())) return 'N/A';
+    return date.toLocaleDateString('en-PK', { timeZone: 'Asia/Karachi' });
+  } catch {
+    return 'N/A';
+  }
 };
 
 const formatDateTime = (dateStr) => {
   if (!dateStr) return 'N/A';
-  return new Date(dateStr + 'Z').toLocaleString('en-PK', { timeZone: 'Asia/Karachi' });
+  try {
+    const clean = dateStr.toString().replace('Z', '').replace(/\+.*$/, '');
+    const date = new Date(clean + 'Z');
+    if (isNaN(date.getTime())) return 'N/A';
+    return date.toLocaleString('en-PK', { timeZone: 'Asia/Karachi' });
+  } catch {
+    return 'N/A';
+  }
 };
 
 export default function AdminProfile() {
