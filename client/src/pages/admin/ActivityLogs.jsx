@@ -81,7 +81,7 @@ export default function ActivityLogs() {
                     <td className="p-4 text-white text-sm">{l.action}</td>
                     <td className="p-4 text-gray-400 text-sm max-w-xs truncate">{l.details}</td>
                     <td className="p-4 text-gray-400 text-sm">{l.ip_address || '-'}</td>
-                    <td className="p-4 text-gray-400 text-sm">{new Date(l.created_at).toLocaleString()}</td>
+                    <td className="p-4 text-gray-400 text-sm">{new Date(l.created_at + 'Z').toLocaleString('en-PK', { timeZone: 'Asia/Karachi' })}</td>
                   </tr>
                 ))}
             </tbody>
