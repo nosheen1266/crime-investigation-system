@@ -5,10 +5,14 @@ import axiosInstance from '../../api/axiosConfig';
 import { LogOut, Users, FileText, BarChart3, Activity, User } from 'lucide-react';
 import toast from 'react-hot-toast';
 
+const formatDate = (dateStr) => {
+  if (!dateStr) return 'N/A';
+  return dateStr.split('T')[0];
+};
+
 const formatDateTime = (dateStr) => {
   if (!dateStr) return 'N/A';
-  const d = new Date(dateStr + 'Z').toLocaleString('en-PK', { timeZone: 'Asia/Lahore' });
-  return d;
+  return dateStr.replace('T', ' ').split('.')[0];
 };
 
 export default function AdminProfile() {
